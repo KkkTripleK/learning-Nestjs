@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersController } from './modules/users/user.controller';
-import { UsersModule } from './modules/users/user.module';
+import { RoleModule } from './modules/roles/role.module';
+import { UsersController } from './users/users.controller';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [UsersModule, RoleModule],
   controllers: [AppController, UsersController],
   providers: [AppService],
 })
