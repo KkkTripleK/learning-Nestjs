@@ -6,12 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  UseInterceptors,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
+@ApiTags('User')
+@UseInterceptors(LoggingInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -22,6 +27,7 @@ export class UsersController {
 
   @Get()
   findAll() {
+    console.log(1);
     return this.usersService.findAll();
   }
 

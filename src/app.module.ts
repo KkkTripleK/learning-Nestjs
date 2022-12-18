@@ -3,8 +3,8 @@ import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RoleModule } from './modules/roles/role.module';
-import { UsersController } from './users/users.controller';
-import { UsersModule } from './users/users.module';
+import { UsersController } from './modules/users/users.controller';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [UsersModule, RoleModule],
