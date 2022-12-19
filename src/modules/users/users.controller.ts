@@ -1,48 +1,25 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+// import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { UsersService } from './users.service';
+import CacheService from '../cache/cache.service';
 
 @Controller('users')
-@ApiTags('User')
-@UseInterceptors(LoggingInterceptor)
+@ApiTags('users')
+// @UseInterceptors(LoggingInterceptor)
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly cacheService: CacheService,
+  ) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async setKey(@Query('key') key: string, @Query('value') value: string) {
+    return this.cacheService.setKey(key, value);
   }
 
   @Get()
-  findAll() {
-    console.log(1);
-    return this.usersService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  async getKey(@Query('key') key: string) {
+    return this.cacheService.getKey(key);
   }
 }
