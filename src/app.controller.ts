@@ -1,14 +1,14 @@
-import { Controller, Get, UseInterceptors } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import { LoggingInterceptor } from './interceptors/logging.interceptor';
 
 @Controller()
-@UseInterceptors(LoggingInterceptor)
+@ApiTags()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
+  async getHello() {
     return this.appService.getHello();
   }
 }
