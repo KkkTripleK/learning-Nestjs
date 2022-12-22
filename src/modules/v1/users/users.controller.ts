@@ -10,8 +10,8 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 // import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { UsersService } from './users.service';
-import CacheService from '../cache/cache.service';
-import { HttpExceptionFilter } from 'src/exception-filter/http-exception.filter';
+import CacheService from '../../../cache/cache.service';
+import { HttpExceptionFilter } from 'src/exceptions/http-exceptions.filter';
 
 @Controller('users')
 @ApiTags('users')
