@@ -6,12 +6,11 @@ import {
 } from '@nestjs/common';
 import { LoggerMiddleware } from 'src/middleware/logger.middleware';
 import { V1Module } from '../v1.module';
-import { UsersModule } from '../v1/users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [V1Module, UsersModule],
+  imports: [V1Module],
   controllers: [AppController],
   providers: [AppService],
 })

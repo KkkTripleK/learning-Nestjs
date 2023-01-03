@@ -12,9 +12,9 @@ import { ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import CacheService from '../../../cache/cache.service';
 import { HttpExceptionFilter } from 'src/exceptions/http-exceptions.filter';
-
+import { TestsService } from '../tests/tests.service';
 @Controller('users')
-@ApiTags('users')
+@ApiTags('Users')
 @UseFilters(new HttpExceptionFilter())
 // @UseInterceptors(LoggingInterceptor)
 export class UsersController {
@@ -23,9 +23,14 @@ export class UsersController {
     private readonly cacheService: CacheService,
   ) {}
 
-  @Post()
-  async setKey(@Query('key') key: string, @Query('value') value: string) {
-    return this.cacheService.setKey(key, value);
+  @Post('setTimeOut')
+  async setKey1(@Query('key') key: string, @Query('value') value: string) {
+    return this.cacheService.setKey1(key, value);
+  }
+
+  @Post('withoutSetTimeOut')
+  async setKey2(@Query('key') key: string, @Query('value') value: string) {
+    return this.cacheService.setKey2(key, value);
   }
 
   @Get()
@@ -42,5 +47,10 @@ export class UsersController {
       },
       HttpStatus.BAD_REQUEST,
     );
+  }
+
+  @Get('test')
+  async test() {
+    return this.usersService.create();
   }
 }

@@ -5,8 +5,16 @@ import Redis from 'ioredis';
 export default class CacheService {
   redis = new Redis();
 
-  async setKey(key: string, values: string) {
-    return this.redis.set(key, values);
+  async setKey1(key: string, value: string) {
+    setTimeout(() => {
+      console.log(`Set the values with key: ${key} and value ${value}`);
+      return this.redis.set(key, value);
+    }, 30000);
+  }
+
+  async setKey2(key: string, value: string) {
+    console.log(`Set the values with key: ${key} and value ${value}`);
+    return this.redis.set(key, value);
   }
 
   async getKey(key: string) {

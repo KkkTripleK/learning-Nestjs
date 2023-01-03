@@ -4,6 +4,8 @@ import { UpdateTestDto } from './dto/update-test.dto';
 
 @Injectable()
 export class TestsService {
+  static globalVar: any;
+
   create(createTestDto: CreateTestDto) {
     return 'This action adds a new test';
   }
@@ -24,3 +26,4 @@ export class TestsService {
     return `This action removes a #${id} test`;
   }
 }
+TestsService.globalVar = 0;
