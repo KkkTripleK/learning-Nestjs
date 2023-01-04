@@ -11,6 +11,7 @@ import { TestsService } from './tests.service';
 import { CreateTestDto } from './dto/create-test.dto';
 import { UpdateTestDto } from './dto/update-test.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { convert2json } from '../xml2json/convert';
 
 @Controller('tests')
 @ApiTags('Test')
@@ -24,7 +25,8 @@ export class TestsController {
 
   @Get()
   findAll() {
-    return this.testsService.findAll();
+    const result = convert2json();
+    return result;
   }
 
   @Get(':id')
