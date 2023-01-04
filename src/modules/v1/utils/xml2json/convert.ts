@@ -5,7 +5,10 @@ import * as fs from 'fs';
 import * as xl from 'excel4node';
 
 export function convert2json() {
-  const text = fs.readFileSync('./src/modules/v1/xml2json/test.xml', 'utf-8');
+  const text = fs.readFileSync(
+    './src/modules/v1/utils/xml2json/test.xml',
+    'utf-8',
+  );
 
   parseString(text, function (err, result) {
     const jsonTextArray = [];
@@ -22,7 +25,6 @@ export function convert2json() {
 
     const wb = new xl.Workbook();
     const ws = wb.addWorksheet('Worksheet Name');
-
     const headingColumnNames = ['id', 'firsName', 'lastName'];
 
     let headingColumnIndex = 1;

@@ -11,7 +11,7 @@ import { TestsService } from './tests.service';
 import { CreateTestDto } from './dto/create-test.dto';
 import { UpdateTestDto } from './dto/update-test.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { convert2json } from '../xml2json/convert';
+import { convert2json } from '../utils/xml2json/convert';
 
 @Controller('tests')
 @ApiTags('Test')
