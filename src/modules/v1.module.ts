@@ -10,6 +10,7 @@ const routes: Routes = [
     path: '/v1',
     children: [
       { path: '/users', module: UsersModule },
+      { path: '/auth', module: AuthModule },
       { path: '/roles', module: RoleModule },
       { path: '/test', module: TestsModule },
     ],
